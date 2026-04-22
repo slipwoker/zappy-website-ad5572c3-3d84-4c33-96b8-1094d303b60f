@@ -1,0 +1,59 @@
+# Business — Generative Engine Optimization Map
+
+---
+
+## Pages
+
+### בית
+https://example.com
+קונדיטוריה יוקרתית בישראל שיוצרת מתוקים מיוחדים בהזמנה אישית. כל יצירה מוכנה בקפידה לפי בקשתכם — כי המתוק המושלם מתחיל כאן.
+
+### הזמנות מותאמות אישית
+https://example.com/custom-orders
+עוגות מיוחדות להזמנה מראש, מוכנות ביד אמן לכל אירוע. שלחו הזמנה לפחות 4 ימים מראש ותקבלו יצירת קונדיטוריה שתשאיר רושם בלתי נשכח.
+
+### אודות פרננדו
+https://example.com/about
+הכירו את פרננדו — קונדיטור בוטיק שמשלב תשוקה, מיומנות ויצירתיות בכל מתוק. גלו את הסיפור שמאחורי קונדיטוריה יוקרתית שנולדה מאהבת האומנות.
+
+### צור קשר
+https://example.com/contact
+רוצים מתנות מתוקות מיוחדות להזמנה? צרו קשר עם פרננדו ישירות דרך האתר — נשמח לשמוע על האירוע שלכם ולהתחיל לבנות יחד את הרגע המושלם.
+
+### Products
+https://example.com/products
+המוצרים שלנו - Fernando Pastry Chef
+
+### Product Detail
+https://example.com/product/:slug
+פרטי המוצר - Fernando Pastry Chef
+
+### Category
+https://example.com/category/:slug
+מוצרים - Fernando Pastry Chef
+
+## Legal & Policy
+
+### Privacy Policy
+https://example.com/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://example.com/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://example.com/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+# Business Context (for LLM understanding)
+
+## About Business
+---
+
+# Additional Resources
+
+- **Sitemap**: https://example.com/sitemap.xml
+- **Robots.txt**: https://example.com/robots.txt
