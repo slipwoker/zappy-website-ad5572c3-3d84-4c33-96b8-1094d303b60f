@@ -990,6 +990,26 @@
             </div>
 
             <div class="ccf-field">
+              <label class="ccf-label" for="ccf-delivery-date">תאריך אספקה רצוי</label>
+              <input class="ccf-input" type="date" id="ccf-delivery-date" name="delivery_date" required />
+              <div class="ccf-date-rules" id="ccf-date-rules">
+                <div class="ccf-date-rule-row">
+                  <span class="ccf-date-rule-icon">📅</span>
+                  <span>ניתן לבחור רק ימים א׳–ו׳ (שבת אינה זמינה)</span>
+                </div>
+                <div class="ccf-date-rule-row">
+                  <span class="ccf-date-rule-icon">⏳</span>
+                  <span>יש להזמין לפחות <strong>4 ימי עסקים מראש</strong> — שבתות אינן נספרות</span>
+                </div>
+                <div class="ccf-date-rule-row ccf-date-error" id="ccf-date-error" style="display:none; color:#c0392b;">
+                  <span class="ccf-date-rule-icon">⚠️</span>
+                  <span id="ccf-date-error-msg">התאריך שנבחר אינו תקין</span>
+                </div>
+                <div class="ccf-date-earliest" id="ccf-date-earliest"></div>
+              </div>
+            </div>
+
+            <div class="ccf-field">
               <label class="ccf-label" for="ccf-message">פרטי ההזמנה</label>
               <textarea class="ccf-input ccf-textarea" id="ccf-message" name="message" rows="5" placeholder="תאריך, אירוע, כמות, סגנון — כל פרט יעזור לי להבין את הבקשה..." required></textarea>
             </div>
