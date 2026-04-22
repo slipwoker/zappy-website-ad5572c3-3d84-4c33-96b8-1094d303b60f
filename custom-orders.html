@@ -1076,6 +1076,649 @@
     </div>
   </div>
 </section>
+  
+<section class="custom-orders-booking-section" data-layout-spec="הזמנות מותאמות אישית-booking" dir="rtl" id="contact">
+  <div class="booking-container">
+
+    <!-- Section Header -->
+    <div class="booking-header">
+      <span class="booking-eyebrow">שלחו פנייה</span>
+      <h2 class="booking-title">הזמינו את הקונדיטוריה שלכם</h2>
+      <p class="booking-subtitle">בחרו תאריך אספקה רצוי — המערכת תחשב אוטומטית שהזמנה אפשרית רק לפחות 4 ימי עסקים מהיום, ללא שבת.</p>
+    </div>
+
+    <div class="booking-layout">
+
+      <!-- Calendar Column -->
+      <div class="booking-calendar-col">
+        <div class="booking-calendar-card">
+          <div class="calendar-nav">
+            <button class="cal-nav-btn" id="cal-prev" aria-label="חודש קודם">&#8250;</button>
+            <span class="cal-month-label" id="cal-month-label"></span>
+            <button class="cal-nav-btn" id="cal-next" aria-label="חודש הבא">&#8249;</button>
+          </div>
+          <div class="calendar-weekdays">
+            <span>א׳</span><span>ב׳</span><span>ג׳</span><span>ד׳</span><span>ה׳</span><span>ו׳</span><span>ש׳</span>
+          </div>
+          <div class="calendar-grid" id="cal-grid"></div>
+          <div class="calendar-legend">
+            <span class="legend-item"><span class="legend-dot legend-dot--available"></span> תאריך זמין</span>
+            <span class="legend-item"><span class="legend-dot legend-dot--selected"></span> נבחר</span>
+            <span class="legend-item"><span class="legend-dot legend-dot--blocked"></span> לא זמין</span>
+          </div>
+        </div>
+        <div class="booking-date-display" id="booking-date-display" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>תאריך אספקה נבחר: <strong id="booking-date-text"></strong></span>
+        </div>
+      </div>
+
+      <!-- Form Column -->
+      <div class="booking-form-col">
+        <form class="booking-form" id="booking-form" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bf-name">שם מלא <span class="required">*</span></label>
+              <input type="text" id="bf-name" name="name" placeholder="ישראל ישראלי" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="bf-phone">טלפון <span class="required">*</span></label>
+              <input type="tel" id="bf-phone" name="phone" placeholder="050-0000000" required autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bf-email">דוא"ל <span class="required">*</span></label>
+            <input type="email" id="bf-email" name="email" placeholder="you@email.com" required autocomplete="email">
+          </div>
+
+          <div class="form-group">
+            <label for="bf-product">סוג הזמנה <span class="required">*</span></label>
+            <select id="bf-product" name="product" required>
+              <option value="" disabled selected>בחרו סוג הזמנה...</option>
+              <option value="celebration-cake">עוגת חגיגה מיוחדת</option>
+              <option value="gift-box">קופסת מתנה מתוקה</option>
+              <option value="dessert-table">שולחן קינוחים לאירוע</option>
+              <option value="pralines">פרלינים ושוקולדים</option>
+              <option value="other">אחר / עוד לא החלטתי</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bf-occasion">אירוע / הזדמנות</label>
+            <input type="text" id="bf-occasion" name="occasion" placeholder="יום הולדת, אירוסין, חינה, מתנה עסקית...">
+          </div>
+
+          <div class="form-group form-group--date">
+            <label for="bf-date">תאריך אספקה רצוי <span class="required">*</span></label>
+            <div class="date-input-wrap">
+              <input type="text" id="bf-date" name="date" placeholder="בחרו תאריך ביומן משמאל" readonly required>
+              <svg class="date-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <span class="form-hint" id="bf-date-hint"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="bf-message">פרטים נוספים</label>
+            <textarea id="bf-message" name="message" rows="4" placeholder="תיארו את ההזמנה — כמות, טעמים, עיצוב, אלרגיות, בקשות מיוחדות..."></textarea>
+          </div>
+
+          <div class="form-note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>לאחר שליחת הבקשה, פרננדו יחזור אליכם במייל לאישור סופי של הפרטים.</span>
+          </div>
+
+          <button type="submit" class="booking-submit-btn" id="booking-submit-btn">
+            <span class="btn-text">שלחו פנייה להזמנה</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+
+          <div class="booking-success" id="booking-success" style="display:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 15 9"/></svg>
+            <h3>הבקשה נשלחה בהצלחה!</h3>
+            <p>פרננדו יחזור אליכם בהקדם לאישור ההזמנה.</p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    /* ===== BOOKING SECTION ===== */
+    .custom-orders-booking-section {
+      background: var(--bg-light);
+      padding: 96px 0 80px;
+      position: relative;
+    }
+    .booking-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .booking-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .booking-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+    .booking-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0 0 14px;
+      line-height: 1.2;
+    }
+    .booking-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ===== LAYOUT ===== */
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ===== CALENDAR CARD ===== */
+    .booking-calendar-card {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+    }
+    .calendar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .cal-month-label {
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--text-dark);
+      text-align: center;
+      flex: 1;
+    }
+    .cal-nav-btn {
+      background: none;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      width: 34px;
+      height: 34px;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, border-color 0.18s;
+    }
+    .cal-nav-btn:hover {
+      background: var(--bg-light);
+      border-color: var(--secondary);
+      color: var(--secondary);
+    }
+    .calendar-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-bottom: 8px;
+    }
+    .calendar-weekdays span {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 4px 0;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: default;
+      transition: background 0.15s, color 0.15s, transform 0.12s;
+      user-select: none;
+    }
+    .cal-day.empty {
+      background: transparent;
+    }
+    .cal-day.past,
+    .cal-day.saturday,
+    .cal-day.blocked {
+      color: #c9bfb8;
+      cursor: not-allowed;
+    }
+    .cal-day.saturday {
+      background: #fdf4f0;
+      color: #d4b8b0;
+    }
+    .cal-day.available {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      cursor: pointer;
+      border: 1px solid var(--border-light);
+    }
+    .cal-day.available:hover {
+      background: var(--secondary);
+      color: #fff;
+      border-color: var(--secondary);
+      transform: scale(1.08);
+    }
+    .cal-day.selected {
+      background: var(--primary);
+      color: var(--text-light);
+      border: 2px solid var(--secondary);
+      transform: scale(1.1);
+      font-weight: 700;
+    }
+    .cal-day.today {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+    .cal-day.min-notice {
+      background: #f5ede8;
+      color: #b8907e;
+      cursor: not-allowed;
+    }
+    .calendar-legend {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .legend-dot--available { background: var(--bg-light); border: 1px solid var(--border-light); }
+    .legend-dot--selected { background: var(--primary); }
+    .legend-dot--blocked { background: #f0e8e5; border: 1px solid #e8d8d2; }
+
+    /* ===== DATE DISPLAY ===== */
+    .booking-date-display {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary);
+      color: var(--text-light);
+      padding: 12px 18px;
+      border-radius: 10px;
+      margin-top: 14px;
+      font-size: 14px;
+    }
+    .booking-date-display svg { flex-shrink: 0; opacity: 0.8; }
+
+    /* ===== FORM ===== */
+    .booking-form-col {
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+      padding: 36px 32px;
+      box-shadow: var(--shadow-card);
+    }
+    .booking-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    .required { color: var(--secondary); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 11px 14px;
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-input);
+      font-size: 15px;
+      color: var(--text-dark);
+      background: var(--bg-light);
+      transition: border-color 0.18s, box-shadow 0.18s;
+      font-family: inherit;
+      direction: rtl;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(199,116,90,0.12);
+    }
+    .form-group input[readonly] {
+      cursor: pointer;
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .date-input-wrap {
+      position: relative;
+    }
+    .date-input-wrap input {
+      width: 100%;
+      box-sizing: border-box;
+      padding-left: 42px;
+    }
+    .date-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .form-hint {
+      font-size: 12px;
+      color: var(--secondary);
+      min-height: 16px;
+      display: block;
+    }
+    .form-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg-light);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .form-note svg { flex-shrink: 0; margin-top: 1px; color: var(--accent); }
+
+    /* ===== SUBMIT BUTTON ===== */
+    .booking-submit-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-btn);
+      padding: 15px 32px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      font-family: inherit;
+      box-shadow: 0 4px 14px rgba(199,116,90,0.28);
+    }
+    .booking-submit-btn:hover {
+      background: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-btn-hover);
+    }
+    .booking-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== SUCCESS STATE ===== */
+    .booking-success {
+      text-align: center;
+      padding: 32px 0;
+      color: var(--primary);
+    }
+    .booking-success svg {
+      color: #5a9e6f;
+      margin-bottom: 12px;
+    }
+    .booking-success h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .booking-success p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .booking-layout {
+        grid-template-columns: 1fr;
+      }
+      .booking-calendar-col {
+        order: -1;
+      }
+    }
+    @media (max-width: 520px) {
+      .booking-container { padding: 0 16px; }
+      .form-row { grid-template-columns: 1fr; }
+      .booking-form-col { padding: 24px 16px; }
+      .custom-orders-booking-section { padding: 64px 0 56px; }
+    }
+  </style>
+
+  <script>
+  (function() {
+    var HEBREW_MONTHS = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+
+    // Count business days forward (skip Saturday = day 6)
+    function addBusinessDays(date, days) {
+      var d = new Date(date);
+      var added = 0;
+      while (added < days) {
+        d.setDate(d.getDate() + 1);
+        if (d.getDay() !== 6) { // 6 = Saturday
+          added++;
+        }
+      }
+      return d;
+    }
+
+    function getMinDate() {
+      return addBusinessDays(new Date(), 4);
+    }
+
+    function isSaturday(date) {
+      return date.getDay() === 6;
+    }
+
+    function isBeforeMin(date, minDate) {
+      var d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      var m = new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate());
+      return d < m;
+    }
+
+    function isToday(date) {
+      var now = new Date();
+      return date.getDate() === now.getDate() &&
+             date.getMonth() === now.getMonth() &&
+             date.getFullYear() === now.getFullYear();
+    }
+
+    function formatHebrew(date) {
+      return date.getDate() + ' ב' + HEBREW_MONTHS[date.getMonth()] + ' ' + date.getFullYear();
+    }
+
+    var currentYear, currentMonth, selectedDate = null;
+    var today = new Date();
+    currentYear = today.getFullYear();
+    currentMonth = today.getMonth();
+
+    function renderCalendar() {
+      var minDate = getMinDate();
+      var grid = document.getElementById('cal-grid');
+      var label = document.getElementById('cal-month-label');
+      if (!grid || !label) return;
+
+      label.textContent = HEBREW_MONTHS[currentMonth] + ' ' + currentYear;
+      grid.innerHTML = '';
+
+      var firstDay = new Date(currentYear, currentMonth, 1).getDay(); // 0=Sunday
+      var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+      // In Hebrew calendar grid: Sunday=col0 ... Saturday=col6
+      // Our weekdays header is א ב ג ד ה ו ש = Sun Mon Tue Wed Thu Fri Sat
+      for (var i = 0; i < firstDay; i++) {
+        var empty = document.createElement('div');
+        empty.className = 'cal-day empty';
+        grid.appendChild(empty);
+      }
+
+      for (var d = 1; d <= daysInMonth; d++) {
+        var cellDate = new Date(currentYear, currentMonth, d);
+        var cell = document.createElement('div');
+        cell.textContent = d;
+
+        if (isToday(cellDate)) cell.classList.add('today');
+
+        if (isSaturday(cellDate)) {
+          cell.className = 'cal-day saturday';
+          cell.title = 'שבת — לא ניתן להזמין';
+        } else if (isBeforeMin(cellDate, minDate)) {
+          cell.className = 'cal-day cal-day blocked min-notice';
+          cell.title = 'יש להזמין לפחות 4 ימי עסקים מראש';
+        } else {
+          cell.className = 'cal-day available';
+          if (isToday(cellDate)) cell.classList.add('today');
+          if (selectedDate &&
+              cellDate.getDate() === selectedDate.getDate() &&
+              cellDate.getMonth() === selectedDate.getMonth() &&
+              cellDate.getFullYear() === selectedDate.getFullYear()) {
+            cell.classList.add('selected');
+          }
+          (function(cd) {
+            cell.addEventListener('click', function() {
+              selectedDate = cd;
+              var dateStr = formatHebrew(cd);
+              // Update form input
+              var inp = document.getElementById('bf-date');
+              if (inp) inp.value = dateStr;
+              // Update date display
+              var dd = document.getElementById('booking-date-display');
+              var dt = document.getElementById('booking-date-text');
+              if (dd && dt) {
+                dt.textContent = dateStr;
+                dd.style.display = 'flex';
+              }
+              // Update hint
+              var hint = document.getElementById('bf-date-hint');
+              if (hint) hint.textContent = '✓ תאריך נבחר: ' + dateStr;
+              renderCalendar();
+            });
+          })(cellDate);
+        }
+        if (isToday(cellDate) && !cell.classList.contains('cal-day')) {
+          cell.classList.add('today');
+        }
+        grid.appendChild(cell);
+      }
+    }
+
+    // Prevent navigating to past months
+    function canGoPrev() {
+      var now = new Date();
+      return !(currentYear === now.getFullYear() && currentMonth <= now.getMonth());
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderCalendar();
+      document.getElementById('cal-prev').addEventListener('click', function() {
+        currentMonth++;
+        if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+        renderCalendar();
+      });
+      document.getElementById('cal-next').addEventListener('click', function() {
+        if (!canGoPrev()) return;
+        currentMonth--;
+        if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+        renderCalendar();
+      });
+
+      // Form submit — open mailto
+      var form = document.getElementById('booking-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var name = document.getElementById('bf-name').value.trim();
+          var phone = document.getElementById('bf-phone').value.trim();
+          var email = document.getElementById('bf-email').value.trim();
+          var product = document.getElementById('bf-product');
+          var productText = product.options[product.selectedIndex] ? product.options[product.selectedIndex].text : '';
+          var occasion = document.getElementById('bf-occasion').value.trim();
+          var date = document.getElementById('bf-date').value.trim();
+          var message = document.getElementById('bf-message').value.trim();
+
+          if (!name || !phone || !email || !productText || !date) {
+            alert('נא למלא את כל השדות החובה ולבחור תאריך ביומן.');
+            return;
+          }
+
+          var body = 'שם: ' + name + '\n'
+                   + 'טלפון: ' + phone + '\n'
+                   + 'דוא"ל: ' + email + '\n'
+                   + 'סוג הזמנה: ' + productText + '\n'
+                   + 'אירוע/הזדמנות: ' + (occasion || '—') + '\n'
+                   + 'תאריך אספקה רצוי: ' + date + '\n'
+                   + 'פרטים נוספים: ' + (message || '—');
+
+          window.location.href = 'mailto:hello@ferpastry.com'
+            + '?subject=' + encodeURIComponent('בקשת הזמנה — ' + name)
+            + '&body=' + encodeURIComponent(body);
+
+          // Show success message
+          form.style.display = 'none';
+          var success = document.getElementById('booking-success');
+          if (success) success.style.display = 'block';
+        });
+      }
+    });
+  })();
+  </script>
+
+</section>
+
   </main>
   
   <footer class="site-footer" dir="rtl">
