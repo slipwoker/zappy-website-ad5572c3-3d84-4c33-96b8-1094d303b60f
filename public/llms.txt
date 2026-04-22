@@ -32,8 +32,8 @@ https://example.com/product/:slug
 https://example.com/category/:slug
 מוצרים - Fernando Pastry Chef
 
-### תודה! | Fernando Pastry Chef
-https://example.com/pastry-chef-10X
+### Thank You | Fernando Pastry Chef
+https://example.com/thank-you
 Fernando Pastry Chef - Thank You | Fernando Pastry Chef
 
 ## Legal & Policy
